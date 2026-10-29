@@ -24,11 +24,14 @@ public class ScrollArtV1 {
 
         while (true) {
             // At each column on the top row, 3% chance to add a new image
-            // for (int x = 0; x < WIDTH - PUMPKIN_WIDTH; x++) {
-                if (rand.nextDouble() < 0.03) {
-                    loadNextRowsWithImage(nextRows, 0);
+             for (int x = 0; x < WIDTH - PUMPKIN_WIDTH; x = x + 12) {
+                if (rand.nextDouble() < 0.03 && isBlank(nextRows[0], x)) {
+                    loadNextRowsWithImage(nextRows,x);
                 }
-            // }
+            }
+            
+
+            
             // Print and remove the top row
             System.out.println(new String(nextRows[0]));
             // Shift all rows up
@@ -54,6 +57,7 @@ public class ScrollArtV1 {
         }
     }
 
+
     static void shiftRowsUp(char[][] nextRows) {
         for (int i = 1; i < nextRows.length; i++) {
             nextRows[i - 1] = nextRows[i];
@@ -68,6 +72,18 @@ public class ScrollArtV1 {
         }
         return row;
     }
+
+static boolean isBlank(char[] row, int x) {
+        for (int i = x; i < x + PUMPKIN_WIDTH; i++) {
+            if (row[i] != ' ') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
 
     // rename your function here
     static char[][] getIceCream() {
@@ -174,8 +190,8 @@ public class ScrollArtV1 {
         img[8][4] = '\\';
         img[8][5] = '/';
         img[8][6] = ' ';
-        img[8][7] = ' ';
-        img[8][8] = ' ';
+        img[8][7] = 'I';
+        img[8][8] = 'F';
         img[8][9] = ' ';
 
         return img;
@@ -306,8 +322,8 @@ public class ScrollArtV1 {
         img[9][6] = '*';
         img[9][7] = '*';
         img[9][8] = ' ';
-        img[9][9] = ' ';
-        img[9][10] = ' ';
+        img[9][9] = 'I';
+        img[9][10] = 'F';
 
 
         return img;
